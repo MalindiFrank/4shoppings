@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type {
   ShoppingState,
   ShoppingList,
-  ShoppingItem,
-  Category,
   ShoppingListCreate,
   ShoppingListUpdate,
   ShoppingItemCreate,
@@ -295,9 +294,9 @@ const shoppingSlice = createSlice({
     builder
       .addMatcher(
         (action) => action.type.endsWith('/rejected'),
-        (state, action) => {
+        (state, action: PayloadAction<string>) => {
           state.loading = false;
-          state.error = action.payload as string;
+          state.error = action.payload;
         }
       );
   },

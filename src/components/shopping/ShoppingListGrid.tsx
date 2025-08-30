@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { ShoppingList } from '../../types';
 import { useAppDispatch } from '../../hooks/redux';
-import { deleteShoppingList, updateShoppingList } from '../../store/slices/shoppingSlice';
+import { deleteShoppingList } from '../../store/slices/shoppingSlice';
 import Button from '../common/Button';
 import Modal from '../common/Modal';
 import EditListModal from './EditListModal';
@@ -37,7 +37,7 @@ const ShoppingListGrid: React.FC<ShoppingListGridProps> = ({
     });
   };
 
-  const getItemCount = (list: ShoppingList) => {
+  const getItemCount = (_list: ShoppingList) => {
     // This would typically come from the items state
     // For now, we'll show a placeholder
     return 0;

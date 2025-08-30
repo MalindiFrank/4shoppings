@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { AuthState, UserProfile, UserRegistration, UserLogin, UserUpdate } from '../../types';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { AuthState, UserRegistration, UserLogin, UserUpdate } from '../../types';
 import { userApi } from '../../utils/api';
-import { 
-  getTokenFromStorage, 
-  setTokenInStorage, 
+import {
+  getTokenFromStorage,
+  setTokenInStorage,
   removeTokenFromStorage,
   getCurrentUserId,
-  hashPassword,
-  verifyPassword
+  hashPassword
 } from '../../utils/auth';
 
 // Initial state
@@ -28,7 +28,7 @@ export const registerUser = createAsyncThunk(
       const hashedPassword = await hashPassword(userData.password);
       const userWithHashedPassword = { ...userData, password: hashedPassword };
       
-      const user = await userApi.register(userWithHashedPassword);
+      await userApi.register(userWithHashedPassword);
       
       // Auto-login after registration
       const loginResult = await userApi.login({
