@@ -243,36 +243,13 @@ docker run -d -p 80:80 -p 3001:3001 --name 4shopping-prod 4shopping:latest
 #### Docker Hub Deployment
 ```bash
 # Tag and push to Docker Hub
-docker tag 4shopping:prod yourusername/4shopping:latest
-docker push yourusername/4shopping:latest
+# docker tag 4shopping:prod yourusername/4shopping:latest
+# docker push yourusername/4shopping:latest
 
 # Deploy on any Docker-compatible platform
 docker run -d -p 80:80 -p 3001:3001 yourusername/4shopping:latest
 ```
 
-#### AWS ECS/Fargate
-```bash
-# Build for AWS
-docker build --target production -t 4shopping:prod .
-docker tag 4shopping:prod your-account.dkr.ecr.region.amazonaws.com/4shopping:latest
-
-# Push to ECR
-aws ecr get-login-password --region region | docker login --username AWS --password-stdin your-account.dkr.ecr.region.amazonaws.com
-docker push your-account.dkr.ecr.region.amazonaws.com/4shopping:latest
-```
-
-#### Google Cloud Run
-```bash
-# Build and deploy to Cloud Run
-gcloud builds submit --tag gcr.io/PROJECT-ID/4shopping
-gcloud run deploy --image gcr.io/PROJECT-ID/4shopping --platform managed --port 80
-```
-
-#### Azure Container Instances
-```bash
-# Deploy to Azure
-az container create --resource-group myResourceGroup --name 4shopping --image 4shopping:prod --ports 80 3001
-```
 
 ### Environment Variables
 
@@ -288,7 +265,7 @@ FRONTEND_PORT=80
 
 # Security
 NODE_ENV=production
-CORS_ORIGIN=https://yourdomain.com
+# CORS_ORIGIN=https://yourdomain.com
 ```
 
 ### Production Deployment Checklist
@@ -302,18 +279,6 @@ CORS_ORIGIN=https://yourdomain.com
 - [ ] Test all functionality in production environment
 - [ ] Set up CI/CD pipeline (optional)
 
-### Scaling and Load Balancing
-
-For high-traffic deployments:
-
-```bash
-# Run multiple instances with load balancer
-docker run -d -p 8081:80 -p 3003:3001 --name 4shopping-prod-1 4shopping:prod
-docker run -d -p 8082:80 -p 3004:3001 --name 4shopping-prod-2 4shopping:prod
-docker run -d -p 8083:80 -p 3005:3001 --name 4shopping-prod-3 4shopping:prod
-```
-
-Use a reverse proxy (nginx, HAProxy, or cloud load balancer) to distribute traffic.
 
 ## Project Structure
 
