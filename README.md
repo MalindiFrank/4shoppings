@@ -1,4 +1,5 @@
 # 4Shopping List App
+https://fourshopping.onrender.com
 
 A comprehensive shopping list application built with React, TypeScript, Redux, and JSON Server. This application provides a complete solution for managing shopping lists with user authentication, real-time data persistence, and responsive design.
 
@@ -76,6 +77,7 @@ Before running this application, make sure you have the following installed:
 - **npm** (version 7.0 or higher)
 
 ## Getting Started
+https://4shoppings.vercel.app
 
 ### 1. Clone the Repository
 
@@ -224,6 +226,7 @@ docker-compose up 4shopping-prod
 ```
 
 ## Deployment
+https://4shoppings.vercel.app
 
 ### Using Pre-built Docker Images
 
@@ -396,3 +399,6 @@ You can customize the application by:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+https://4shoppings.vercel.app
+-----------------------------
