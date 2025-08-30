@@ -125,7 +125,105 @@ For testing purposes, you can use the following demo account:
 - **Email**: demo@example.com
 - **Password**: demo123
 
-## Project Structure
+## 🐳 Docker Setup
+
+The application includes a multi-stage Dockerfile for both development and production environments, providing consistent deployment across different platforms.
+
+### Development with Docker
+
+For development with hot reload and live code changes:
+
+```bash
+# Build development image
+docker build --target development -t 4shopping:dev .
+
+# Run development container with hot reload
+docker run -d -p 5174:5173 -p 3002:3001 --name 4shopping-dev 4shopping:dev
+
+# View logs
+docker logs -f 4shopping-dev
+```
+
+The development container includes:
+- ✅ Vite dev server with hot module replacement
+- ✅ JSON Server backend
+- ✅ Live code reloading
+- ✅ Development tools and debugging
+
+Access the application at:
+- **Frontend**: `http://localhost:5174`
+- **Backend API**: `http://localhost:3002`
+
+### Production with Docker
+
+For optimized production deployment:
+
+```bash
+# Build production image
+docker build --target production -t 4shopping:prod .
+
+# Run production container
+docker run -d -p 8080:80 -p 3002:3001 --name 4shopping-prod 4shopping:prod
+```
+
+The production container includes:
+- ✅ Optimized static build served by Nginx
+- ✅ Gzip compression and caching headers
+- ✅ Security headers
+- ✅ SPA routing support
+- ✅ Minimal image size
+
+Access the application at:
+- **Frontend**: `http://localhost:8080`
+- **Backend API**: `http://localhost:3002`
+
+### Docker Features
+
+- **Multi-stage builds**: Separate development and production stages
+- **Node.js 20 Alpine**: Lightweight base image with latest Node.js
+- **Nginx production server**: High-performance static file serving
+- **Hot reload**: Development container supports live code changes
+- **Security optimized**: Production includes security headers and best practices
+
+### Docker Compose (Recommended)
+
+For easier management, create a `docker-compose.yml`:
+
+```yaml
+version: '3.8'
+services:
+  4shopping-dev:
+    build:
+      context: .
+      target: development
+    ports:
+      - "5174:5173"
+      - "3002:3001"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+
+  4shopping-prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "8080:80"
+      - "3002:3001"
+    restart: unless-stopped
+```
+
+Then run:
+```bash
+# Development
+docker-compose up 4shopping-dev
+
+# Production
+docker-compose up 4shopping-prod
+```
+
+## 📁 Project Structure
 
 ```
 shopping-list-app/
@@ -145,6 +243,8 @@ shopping-list-app/
 │   ├── main.tsx           # Application entry point
 │   └── index.css          # Global styles
 ├── db.json                # JSON Server database
+├── Dockerfile             # Multi-stage Docker configuration
+├── nginx.conf             # Nginx configuration for production
 ├── package.json           # Dependencies and scripts
 └── README.md              # Project documentation
 ```
@@ -194,14 +294,21 @@ The application has been tested across:
 - **Screen Sizes**: 320px to 1200px+ widths
 - **Functionality**: All CRUD operations, authentication, routing
 
-## Available Scripts
+## 📜 Available Scripts
 
+### NPM Scripts
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run server` - Start JSON Server backend
 - `npm run dev:full` - Start both frontend and backend concurrently
 - `npm run lint` - Run ESLint
+
+### Docker Commands
+- `docker build --target development -t 4shopping:dev .` - Build development image
+- `docker build --target production -t 4shopping:prod .` - Build production image
+- `docker run -d -p 5174:5173 -p 3002:3001 --name 4shopping-dev 4shopping:dev` - Run development container
+- `docker run -d -p 8080:80 -p 3002:3001 --name 4shopping-prod 4shopping:prod` - Run production container
 
 ## Configuration
 
