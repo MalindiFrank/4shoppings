@@ -84,7 +84,8 @@ const EditItemModal: React.FC<EditItemModalProps> = ({
     try {
       new URL(string);
       return true;
-    } catch (_) {
+    } catch (error) {
+      console.error(error)
       return false;
     }
   };
@@ -116,6 +117,7 @@ const EditItemModal: React.FC<EditItemModalProps> = ({
       }
     } catch (error) {
       // Error handling is done by Redux
+      console.error(error)
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,4 @@
-# Shopping List App
+# 4Shopping List App
 
 A comprehensive shopping list application built with React, TypeScript, Redux, and JSON Server. This application provides a complete solution for managing shopping lists with user authentication, real-time data persistence, and responsive design.
 
