@@ -44,7 +44,7 @@ A comprehensive shopping list application built with React, TypeScript, Redux, a
 - **Desktop Ready**: Full-featured desktop interface (1024px+)
 - **Cross-browser Compatible**: Works on all modern browsers
 
-## 🛠 Technology Stack
+## Technology Stack
 
 ### Frontend
 - **React 19+** - Modern React with hooks and functional components
@@ -125,7 +125,7 @@ For testing purposes, you can use the following demo account:
 - **Email**: demo@example.com
 - **Password**: demo123
 
-## 🐳 Docker Setup
+## Docker Setup
 
 The application includes a multi-stage Dockerfile for both development and production environments, providing consistent deployment across different platforms.
 
@@ -145,10 +145,10 @@ docker logs -f 4shopping-dev
 ```
 
 The development container includes:
-- ✅ Vite dev server with hot module replacement
-- ✅ JSON Server backend
-- ✅ Live code reloading
-- ✅ Development tools and debugging
+- Vite dev server with hot module replacement
+- JSON Server backend
+- Live code reloading
+- Development tools and debugging
 
 Access the application at:
 - **Frontend**: `http://localhost:5174`
@@ -167,11 +167,11 @@ docker run -d -p 8080:80 -p 3002:3001 --name 4shopping-prod 4shopping:prod
 ```
 
 The production container includes:
-- ✅ Optimized static build served by Nginx
-- ✅ Gzip compression and caching headers
-- ✅ Security headers
-- ✅ SPA routing support
-- ✅ Minimal image size
+- Optimized static build served by Nginx
+- Gzip compression and caching headers
+- Security headers
+- SPA routing support
+- Minimal image size
 
 Access the application at:
 - **Frontend**: `http://localhost:8080`
@@ -223,7 +223,7 @@ docker-compose up 4shopping-dev
 docker-compose up 4shopping-prod
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 shopping-list-app/
@@ -294,7 +294,7 @@ The application has been tested across:
 - **Screen Sizes**: 320px to 1200px+ widths
 - **Functionality**: All CRUD operations, authentication, routing
 
-## 📜 Available Scripts
+## Available Scripts
 
 ### NPM Scripts
 - `npm run dev` - Start development server
